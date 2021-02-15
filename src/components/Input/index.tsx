@@ -34,7 +34,7 @@ const Input: React.FC<InputProps> = ({ name, icon, ...rest }) => {
         inputElementRef.current.clear();
       },
     });
-  }, [registerField, fieldName]);
+  }, [fieldName, registerField]);
 
   return (
     <Container>
