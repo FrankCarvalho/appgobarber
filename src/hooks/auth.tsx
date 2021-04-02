@@ -6,12 +6,18 @@ import React, {
   useEffect,
 } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Value } from 'react-native-reanimated';
 import api from '../services/api';
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar_url: string;
+}
 
 interface AuthState {
   token: string;
-  user: object;
+  user: User;
 }
 
 interface SignIncredentials {
@@ -20,7 +26,7 @@ interface SignIncredentials {
 }
 
 interface AuthContextDate {
-  user: object;
+  user: User;
   loading: boolean;
   signIn(credentials: SignIncredentials): Promise<void>;
   signOut(): void;
