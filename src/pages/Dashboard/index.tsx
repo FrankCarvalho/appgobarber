@@ -28,9 +28,10 @@ export interface Provider {
 }
 
 const Dashboard: React.FC = () => {
-  const { signOut, user } = useAuth();
-  const navigation = useNavigation();
   const [providers, setProviders] = useState<Provider[]>([]);
+
+  const { signOut, user } = useAuth();
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     api.get('providers').then(response => {
@@ -38,23 +39,26 @@ const Dashboard: React.FC = () => {
     });
   }, []);
 
-  const handleSelectProvider = useCallback(
+  const navigateToProfile = useCallback(() => {
+    signOut();
+  }, [signOut]);
+
+  const navigateToCreateAppointment = useCallback(
     (providerId: string) => {
-      navigation.navigate('AppointmentDatePicker', { providerId });
+      navigate('CreateAppointment', { providerId });
     },
-    [navigation],
+    [navigate],
   );
 
   return (
     <Container>
       <Header>
         <HeaderTitle>
-          Bem vindo,
-          {'\n'}
+          Bem vindo, {'\n'}
           <UserName>{user.name}</UserName>
         </HeaderTitle>
 
-        <ProfileButton onPress={() => navigation.navigate('Profile')}>
+        <ProfileButton onPress={() => navigateToProfile}>
           <UserAvatar source={{ uri: user.avatar_url }} />
         </ProfileButton>
       </Header>
@@ -66,7 +70,9 @@ const Dashboard: React.FC = () => {
           <ProvidersListTitle>Cabelereiros</ProvidersListTitle>
         }
         renderItem={({ item: provider }) => (
-          <ProviderContainer onPress={() => handleSelectProvider(provider.id)}>
+          <ProviderContainer
+            onPress={() => navigateToCreateAppointment(provider.id)}
+          >
             <ProviderAvatar source={{ uri: provider.avatar_url }} />
 
             <ProviderInfo>
