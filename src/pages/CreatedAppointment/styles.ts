@@ -127,20 +127,17 @@ export const SectionTitle = styled.Text`
 `;
 
 export const SectionContent = styled.ScrollView.attrs({
+  contentContainerStyle: { paddingHorizontal: 24 },
   horizontal: true,
   showsHorizontalScrollIndicator: false,
-  contentContainerStyle: {
-    paddingHorizontal: 24,
-  },
 })``;
 
-export const Hour = styled(RectButton).attrs((props: HourProps) => ({
-  enabled: props.available,
-}))<HourProps>`
+export const Hour = styled(RectButton)<HourProps>`
   padding: 12px;
   background: ${props => (props.selected ? '#FF9000' : '#3e3b47')};
   border-radius: 10px;
   margin-right: 8px;
+
   opacity: ${props => (props.available ? 1 : 0.3)};
 `;
 

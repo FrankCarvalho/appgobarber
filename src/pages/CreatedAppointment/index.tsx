@@ -139,8 +139,8 @@ const CreatedAppointment: React.FC = () => {
       .map(({ hour, available }) => {
         return {
           hour,
-          hourFormatted: format(new Date().setHours(hour), 'HH:00'),
           available,
+          hourFormatted: format(new Date().setHours(hour), 'HH:00'),
         };
       });
   }, [availability]);
@@ -151,8 +151,8 @@ const CreatedAppointment: React.FC = () => {
       .map(({ hour, available }) => {
         return {
           hour,
-          hourFormatted: format(new Date().setHours(hour), 'HH:00'),
           available,
+          hourFormatted: format(new Date().setHours(hour), 'HH:00'),
         };
       });
   }, [availability]);
@@ -216,11 +216,11 @@ const CreatedAppointment: React.FC = () => {
                 <Hour
                   // enabled={available}
                   available={available}
-                  selected={hour === selectedHour}
+                  selected={selectedHour === hour}
                   onPress={() => handleSelectHour(hour)}
                   key={hourFormatted}
                 >
-                  <HourText selected={hour === selectedHour}>
+                  <HourText selected={selectedHour === hour}>
                     {hourFormatted}
                   </HourText>
                 </Hour>
@@ -237,11 +237,11 @@ const CreatedAppointment: React.FC = () => {
                   <Hour
                     // enabled={available}
                     available={available}
-                    selected={hour === selectedHour}
+                    selected={selectedHour === hour}
                     onPress={() => handleSelectHour(hour)}
                     key={hourFormatted}
                   >
-                    <HourText selected={hour === selectedHour}>
+                    <HourText selected={selectedHour === hour}>
                       {hourFormatted}
                     </HourText>
                   </Hour>
